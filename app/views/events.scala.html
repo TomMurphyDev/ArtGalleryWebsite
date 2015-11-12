@@ -1,0 +1,21 @@
+@import model.Event
+@import model.User;
+@(user:User,eventlist: List[Event])
+@main(user,"Upcoming Events at The Gallery") {
+<div class="page-header">
+	<h1>Upcoming Events</h1>
+</div>
+  @for(Event <- eventlist) {
+		<div class="jumbotron" style="border:1px solid black">
+		 <img src="@Event.imageURL" class="img-responsive" alt="@Event.eventName" />
+    		<h2>@Event.eventName</h2>      
+    			<p><em>@Event.eventDescription</em></p>      
+  				<p>@Event.eventCat</p>      
+  				<p>@Event.eventDate</p>     
+  				<p>@Event.eventCost <a href="/NewBooking/@Event.eventID" class="btn btn-success btn-lg" style ="float: right;">
+     			  Book Now!<span class="glyphicon glyphicon-menu-right"></span>
+    			</a></p>      
+    			<div></div>
+  		</div>
+		}
+}

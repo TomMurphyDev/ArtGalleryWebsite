@@ -1,0 +1,33 @@
+@import helper._
+@import model.User
+@(user:User,userRegForm: Form[User])
+@main(user,"New User Registration") {
+	<h1> Profile Details </h1>
+	<div class = "container">
+	@if(userRegForm.hasGlobalErrors) {
+	<div class="alert alert-danger">
+  		<strong>Error!</strong> @userRegForm.globalError.message
+	</div>
+}
+	@helper.form(CSRF(routes.Users.save())){
+		<fieldset>
+			<legend>First Your email and password.(For logging in...)</legend>
+			@helper.inputText(userRegForm("email"), '_label -> "Email Address:",'_showConstraints -> false,'size -> 60)
+			@helper.inputPassword(userRegForm("password"), '_label -> "Password:",'_showConstraints -> false,'size -> 60)
+			@helper.inputPassword(userRegForm("confirmPassword"), '_label -> "Confirm Password:",'_showConstraints -> false,'size -> 60)
+			<legend>And a little information about yourself</legend>
+			@helper.inputText(userRegForm("fName"), '_label -> "First Name:", '_showConstraints -> false,'size -> 60)
+			@helper.inputText(userRegForm("lName"), '_label -> "Last Name:",'_showConstraints -> false,'size -> 60)
+			@helper.inputText(userRegForm("tel"), '_label -> "Telephone Number:",'_showConstraints -> false,'size -> 60)
+			@helper.inputText(userRegForm("add1"), '_label -> "Address Line 1:",'_showConstraints -> false,'size -> 60)
+			@helper.inputText(userRegForm("add2"), '_label -> "Address Line 2:",'_showConstraints -> false,'size -> 60)
+			@helper.inputText(userRegForm("country"), '_label -> "Country:",'_showConstraints -> false,'size -> 60)
+		</fieldset>
+		<a class="btn" href="@routes.Users.userReg()">Clear Fields</a>
+		<input type ="submit" class="btn btn-primary" value="Send">
+		</div>
+		<br>
+	}
+</div>
+	
+}

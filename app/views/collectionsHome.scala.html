@@ -1,0 +1,24 @@
+@import model.Collection
+@import model.User
+@import model.Artist
+@(user:User,collections: List[Collection])
+@main(user,"Here are our collections.") {
+<!-Source: W3 schools bootstrap reference material.Snippets on Modal,wells,buttons and links->
+			<div class="col-lg-12">
+                <h1 class="page-header">Our Collections</h1>
+            </div>
+		<div class="container">
+        <div class="row">   
+			@for(Collection <- collections) {
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb image-holder">
+            	<h3>@Collection.name </h3>
+                <a  href="/Collection/View/@Collection.artistId" class="thumbnail" width="400" height="300">
+                    <img class="img-responsive" src="@Collection.imgUrl" alt="@Collection.name" width="400" height="300">
+                </a>
+            </div>
+            }
+          </div>
+
+        <hr>
+	</div>
+}

@@ -1,0 +1,9 @@
+/Global.class
+/application.conf
+/application.conf~
+/controllers/
+/evolutions/
+/initial-data.yml~
+/logback.xml
+/model/
+/routes

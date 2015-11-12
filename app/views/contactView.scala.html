@@ -1,0 +1,32 @@
+@import model.User
+@import model.Contact
+@(user:User,contacts:List[Contact])
+@main(user,"Here are all current enquiries"){
+                <h2>
+                    Current guest Queries.
+                </h2>
+                <div class="mail-tools tooltip-demo m-t-md">
+              <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Refresh inbox"><i class="fa fa-refresh"></i> Refresh</button>
+                </div>
+            </div>
+                <div class="mail-box">
+                <table class="table table-hover table-mail">
+                <tbody>
+                @for(Contact <- contacts){
+                <tr class="unread">
+                    <td class="check-mail">
+                        <div style="position: relative;" class="icheckbox_square-green"><input style="position: absolute; opacity: 0;" class="i-checks" type="checkbox"><ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" class="iCheck-helper"></ins></div>
+                    </td>
+                    <td class="mail-contact">@Contact.name From:@Contact.email</td>
+                    <td class="mail-subject">@Contact.subject</td>
+                    <td class="">@Contact.message</td>
+                    <td class="text-right mail-date">@Contact.status</td>
+                </tr>
+                }
+                </tbody>
+                </table>
+                </div>
+            
+
+
+}

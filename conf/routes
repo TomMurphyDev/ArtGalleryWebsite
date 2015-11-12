@@ -1,0 +1,48 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Application.index()                           
+# Events Page
+GET 	/Events/ 					controllers.Application.events()
+GET 	/Events/view/:id 			controllers.Application.eventView(id:Int)
+# Collections Page
+GET 	/Collection/				controllers.Collections.collection()
+GET 	/Collection/View/:artistId	controllers.Collections.collectionView(artistId:Int)
+# Contact Us
+GET		/Contact/					controllers.Contacts.contact()
+POST	/Contact/					controllers.Contacts.contactSubmit()
+# Review
+GET		/Review/					controllers.Reviews.review()
+POST	/Review/					controllers.Reviews.reviewSubmit()
+# Login Page
+GET		/login						controllers.Application.login()
+POST	/authenticate				controllers.Application.authenticate()
+#Logout
+GET		/logout						controllers.Application.logout()
+# User Registration page
+GET 	/UserRegistration/			controllers.Users.userReg()
+POST	/UserRegistration/			controllers.Users.save()
+# User Booking pages
+GET 	/NewBooking/:id				controllers.Bookings.bookingConf(id:Int)
+GET 	/NewBooking/Confirm/		controllers.Bookings.saveBooking()
+# Bookings page
+#GET     /Bookings/					controllers.Bookings.bookingList()
+#GET     /Bookings/new				controllers.Bookings.newBooking()
+#GET     /Bookings/:date			controllers.Bookings.bookingDetails(date:String)
+
+#Admin Pages
+GET     /Admin/Users/List				controllers.Users.list()
+GET     /Admin/Users/View/:id			controllers.Users.viewUser(id:Int)
+GET 	/Admin/Bookings/List			controllers.Bookings.bookingList()
+GET 	/Admin/Bookings/List/delete/:id	controllers.Bookings.delete(id:Int)
+GET 	/Admin/Bookings/List/deleteFromList/:id	controllers.Bookings.delete(id:Int)
+GET		/Admin/Contacts/				controllers.Contacts.contactList()
+GET     /Admin/Users/List/delete/:id	controllers.Users.delete(id:Int)
+GET     /DENIED/						controllers.Users.accessDenied()
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file              controllers.Assets.versioned(path="/public", file)
+GET  	/images/*file  			   controllers.Assets.at(path="/public/images", file)
+GET     /webjars/*file             controllers.WebJarAssets.at(file)
+GET     /assets/fonts/*file        controllers.Assets.at(path="/artGallery/public/fonts",file)

@@ -1,0 +1,66 @@
+@import model.Contact
+@import model.User
+@(user:User,userContactForm: Form[Contact])
+@import helper._
+@main(user,"Get in touch with us") {
+	<div class="page-header">
+	<h1>Contact Form.</h1>
+	</div>
+	<!-- Page Content -->
+	<!-Source: W3 schools bootstrap reference material.Snippets on Modal,wells,buttons and links->
+    <div class="container">
+        <!-- Content Row -->
+        <div class="row">
+            <!-- Map Column -->
+            <div class="col-md-8">
+                <!-- Embedded Google Map -->
+                <iframe width="100%" height="400px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?hl=en&amp;ie=UTF8&amp;ll=37.0625,-95.677068&amp;spn=56.506174,79.013672&amp;t=m&amp;z=4&amp;output=embed"></iframe>
+            </div>
+            <!-- Contact Details Column -->
+            <div class="col-md-4">
+                <h3>Contact Details</h3>
+                <p>
+                    492 EverGreen Terrace<br>Springfield, CA 90209<br>
+                </p>
+                <p><i class="fa fa-phone"></i> 
+                    <abbr title="Phone">P</abbr>: (123) 456-7589</p>
+                <p><i class="fa fa-envelope-o"></i> 
+                    <abbr title="Email">E</abbr>: <a href="mailto:">"name@@example.com"</a>
+                </p>
+                <p><i class="fa fa-clock-o"></i> 
+                    <abbr title="Hours">H</abbr>: Monday - Friday: 9:00 AM to 5:00 PM</p>
+                <ul class="list-unstyled list-inline list-social-icons">
+                    <li>
+                        <a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-linkedin-square fa-2x"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-twitter-square fa-2x"></i></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-google-plus-square fa-2x"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.row -->
+		@helper.form(CSRF(routes.Contacts.contactSubmit())){
+		<fieldset>
+			<legend>User Details (@userContactForm("User Details").valueOr("New"))</legend>
+			@helper.inputText(userContactForm("name"), '_label -> "Name", '_showConstraints -> false,'size -> 60)
+			@helper.inputText(userContactForm("email"), '_label -> "Email", '_showConstraints -> false,'size -> 60)
+			@helper.inputText(userContactForm("subject"), '_label -> "Subject", '_showConstraints -> false,'size -> 60)
+			@helper.textarea(userContactForm("message"), '_label -> "Message", '_showConstraints -> false,'rows -> 3, 'cols -> 60)
+		</fieldset>
+		<a class="btn" href="@routes.Contacts.contact()">Clear Fields</a>
+		<input type ="submit" class="btn btn-primary" value="Send">
+		
+		</div>
+		<div></div>
+	}
+    </div>
+    <!-- /.container -->
+	}
+

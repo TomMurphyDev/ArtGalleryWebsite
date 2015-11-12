@@ -1,0 +1,20 @@
+@import model.User
+@import model.Event
+@(user:User, event:Event)
+@main(user,"Event view") {
+<div class="page-header">
+	<h1>Event View</h1>
+	<!-Source: W3 schools bootstrap reference material.Snippets on Modal,wells,buttons and links->
+</div>
+  		<div class="jumbotron" style="border:1px solid black">
+		 <img src="@event.imageURL" class="img-responsive" alt="@event.eventName" />
+    		<h2>@event.eventName</h2>      
+    			<p><em>@event.eventDescription</em></p>      
+  				<p>@event.eventCat</p>      
+  				<p>@event.eventDate</p>      
+  				<p>@event.eventCost <a href="/Admin/Bookings/List" class="btn btn-success btn-lg" style ="float: right;">
+     			  Return!<span class="glyphicon glyphicon-menu-right"></span>
+    			</a></p>      
+    			<div></div>
+  		</div>
+}

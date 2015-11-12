@@ -1,0 +1,67 @@
+@import model.Review
+@import model.User
+@(user:User,reviews: List[Review] , reviewForm: Form[Review])
+@import helper._
+@main(user,"Here is what our past guests think of us") {
+	<div class="page-header text-center">
+	<div>
+	<h1>Our Reviews</h1>
+	</div>
+	
+	<!-- Trigger the modal with a button -->
+	<div>
+  	<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal">Click Here Leave Review</button>
+  	<!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style = "background-color: #000000;
+      color:white !important;
+      text-align: center;
+      font-size: 30px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="glyphicon glyphicon-thumbs-up"></span> Review Form</h4>
+        </div>
+        <div class="modal-body">
+	@helper.form(CSRF(routes.Reviews.reviewSubmit())){
+		<fieldset>
+			<legend>Fill out the details below to leave your review!</legend>
+			@helper.textarea(reviewForm("comment"), '_label -> "Your Comments", '_showConstraints -> true)
+		</fieldset>
+		<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+       	  <button type ="submit" class="btn btn-primary btn-default pull-right" value="Send"><span class="glyphicon glyphicon-pencil"></span> Post</button>	
+		}
+        <div class="modal-footer" style ="background-color: #f9f9f9">
+          
+        </div>
+      </div>
+      
+    </div>
+  </div>
+	
+	</div>
+  	
+	</div>
+</div>
+		@for(Review <- reviews) {
+	
+	<div class="panel panel-primary">
+    <div class="panel-heading">
+    	<th>@user.fName @user.lName Visted the Gallery .Heres what they have to say!       @Review.dateOf</th>
+    </div>
+    <div class="panel-body">
+      <!--table-->
+      <table class="table table-condensed">
+        <tbody>
+          <tr>
+            <td>@Review.comment</td>
+          </tr>
+        </tbody>
+      </table>
+      <!--end of table-->
+    </div>
+   </div>
+  } 
+}

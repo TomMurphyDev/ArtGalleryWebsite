@@ -1,0 +1,37 @@
+@import model.User
+@import model.Booking
+@(user:User,bookings: List[Booking])
+@main(user,"List of all Bookings") {
+<div class="page-header">
+	<!-Source: W3 schools bootstrap reference material.Snippets on Modal,wells,buttons and links->
+	<h1>All Users Bookings Currently on file.</h1>
+</div>
+<div class="table-responsive">
+<table class="table table-striped table-hover">
+	<thead>
+		<tr>
+			<th>Booking Id</th>
+			<th>Date</th>
+			<th>EventID</th>
+			<th>UserID</th>
+	</thead>
+	<tbody>
+		@for(Booking <- bookings) {
+		<tr>
+			<td>@Booking.bookingId</td>
+			<td>@Booking.date</td>
+			<td><li><a href="/Events/view/@Booking.eventID" data-toggle="tooltip" data-placement="top" title="@Booking.eventID">@Booking.eventID</a></li></td>
+			<td>@Booking.id</td>
+			<td><a href="/Admin/Bookings/List/deleteFromList/@Booking.bookingId"><span class="glyphicon glyphicon-remove"></span>
+			<td>
+		</tr>
+		}
+	</tbody>
+</table>
+</div>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
+}
